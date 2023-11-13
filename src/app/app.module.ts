@@ -6,16 +6,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderModule } from './shared/features/header/header.module';
-import { HomeComponent } from './home/feature/home.component';
-import { FooterUiComponent } from './shared/ui/footer-ui/footer-ui.component';
 import { FooterUiModule } from './shared/ui/footer-ui/footer-ui.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    FooterUiComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
