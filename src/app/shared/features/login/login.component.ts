@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../data-access/auth/auth.service';
 import { lastValueFrom } from 'rxjs';
 import { UserService } from '../../data-access/user/user.service';
+import { RegComponent } from '../reg/reg.component';
 
 @Component({
   selector: 'app-login',
@@ -26,18 +27,14 @@ export class LoginComponent {
     this.showPassword = !this.showPassword;
   }
 
-  openReg(){
-    
-  }
-
-/*   openReg() { // открыть форму регистрации
-    const dialogRef = this.dialog.open(RegUiComponent);
+  openReg() { // открыть форму регистрации
+    const dialogRef = this.dialog.open(RegComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
- */
+
   ngOnInit():void {
     this.formGroup = new FormGroup({
       mail: new FormControl('',[Validators.required, Validators.email]),

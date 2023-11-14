@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RegModule } from '../reg/reg.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
+    RegModule,
     MatDialogModule,
   ]
 })
