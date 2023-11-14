@@ -15,6 +15,8 @@ export class HeaderUiComponent {
 
   @Input() loggedIn: boolean = false;
 
+  @Input() User: any;
+
   @Output() OpenLogin = new EventEmitter<boolean>();
 
   @Output() TagsSearch = new EventEmitter<TagsModel>();

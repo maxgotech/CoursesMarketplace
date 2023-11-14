@@ -38,7 +38,7 @@
    
     <div id="log" class="topnav">
     <a *ngIf="!loggedIn" (click)="login()">Войти</a>
-     <!--  <app-user-card-block *ngIf="loggedIn"></app-user-card-block> -->
+      <app-user-card-ui [user]="User" (LogOut)="LoggingOut($event)" *ngIf="loggedIn"></app-user-card-ui>
     </div>
     
   </header>
