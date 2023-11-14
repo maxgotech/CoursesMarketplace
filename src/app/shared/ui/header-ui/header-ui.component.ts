@@ -21,6 +21,14 @@ export class HeaderUiComponent {
 
   @Output() QuerySearch = new EventEmitter<string>();
 
+  @Output() Logout = new EventEmitter<boolean>();
+
+  LoggingOut(flag:boolean){
+    if(flag==true){
+      this.Logout.emit(true)
+    }
+  }
+
   login() {
     this.OpenLogin.emit(true)
   }
