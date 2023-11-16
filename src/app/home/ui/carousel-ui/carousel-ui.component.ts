@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-carousel-ui',
   templateUrl: './carousel-ui.component.html',
   styleUrls: ['./carousel-ui.component.less']
 })
-export class CarouselUiComponent {
+export class CarouselUiComponent implements OnInit {
 
-  imgid = 0;
-  interval = 5000; // duration(speed) of the slide
+  ngOnInit(): void {
+    this.imgid=0
+  }
+
+  imgid:number = 0;
+  interval:number = 8000; // duration(speed) of the slide
   timer = window.setInterval(()=> {this.changeSlide(0,'auto')}, this.interval);
 
   changeSlide(slideId:number,type:string):void { //смена слайда баннера
