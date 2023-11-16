@@ -60,17 +60,18 @@ export class HeaderComponent implements OnInit {
   }
 
   async searchButton(query: string) {
-    this.router.navigate(['catalog/search/find'], { queryParams: { text: query } }
-    )
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['catalog/search/find'], { queryParams: { text: query } })
+    })
   }
 
   async tagsButton(tags: TagsModel) {
-    console.log(tags)
     if (tags.secondarytag == null) {
       this.uri = 'catalog/' + tags.primarytag
     } else {
       this.uri = 'catalog/' + tags.primarytag + '/' + tags.secondarytag
     }
-    this.router.navigate([this.uri])
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+      this.router.navigate([this.uri]));
   }
 }
