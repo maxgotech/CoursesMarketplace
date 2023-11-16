@@ -14,7 +14,6 @@ export class CourseCardsUiComponent implements OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['courses'].currentValue!=null){
       this.loaded=true
-      console.log(this.courses)
     }
   }
 

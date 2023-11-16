@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
     const request = this.homeService.Allcourses()
     const response = await lastValueFrom(request)
     this.coursesData=response
-    console.log(this.coursesData)
   }
 
   coursesData:any
