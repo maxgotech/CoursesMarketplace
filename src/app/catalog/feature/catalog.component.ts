@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogService } from '../data-access/catalog.service';
 import { lastValueFrom } from 'rxjs';
@@ -10,7 +10,6 @@ import { lastValueFrom } from 'rxjs';
 })
 export class CatalogComponent implements OnInit {
   constructor(private router: Router, private aroute: ActivatedRoute, private catalogService: CatalogService) {
-    //this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.route = this.router.url
     if (this.route.indexOf('search') !== -1) {
       this.route_flag = true
