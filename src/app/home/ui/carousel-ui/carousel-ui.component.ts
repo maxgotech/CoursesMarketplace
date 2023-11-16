@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-carousel-ui',
   templateUrl: './carousel-ui.component.html',
   styleUrls: ['./carousel-ui.component.less']
 })
-export class CarouselUiComponent implements OnInit {
+export class CarouselUiComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.imgid=0
@@ -52,6 +52,10 @@ export class CarouselUiComponent implements OnInit {
         imgs[currentImg].style.opacity = '1';
         dots[currentImg].className += ' active';
       }
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timer)
   }
 
 }
