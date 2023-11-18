@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogService } from '../data-access/catalog.service';
 import { lastValueFrom } from 'rxjs';
+import { CatalogUiComponent } from '../ui/catalog-ui/catalog-ui.component';
 
 @Component({
-  selector: 'app-catalog',
-  templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.less']
+    selector: 'app-catalog',
+    templateUrl: './catalog.component.html',
+    styleUrls: ['./catalog.component.less'],
+    standalone: true,
+    imports: [CatalogUiComponent]
 })
 export class CatalogComponent implements OnInit {
   constructor(private router: Router, private aroute: ActivatedRoute, private catalogService: CatalogService) {

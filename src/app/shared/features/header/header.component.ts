@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../data-access/auth/auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { UserService } from '../../data-access/user/user.service';
 import { lastValueFrom } from 'rxjs';
+import { HeaderUiComponent } from '../../ui/header-ui/header-ui.component';
 
 export interface TagsModel {
   primarytag?: string
@@ -12,9 +13,11 @@ export interface TagsModel {
 }
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.less']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.less'],
+    standalone: true,
+    imports: [HeaderUiComponent, RouterOutlet]
 })
 export class HeaderComponent implements OnInit {
   constructor(public dialog: MatDialog, private authService: AuthService, private router: Router, private userService: UserService) { }

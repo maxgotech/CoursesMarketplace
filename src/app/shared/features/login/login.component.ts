@@ -1,15 +1,22 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuthService } from '../../data-access/auth/auth.service';
 import { lastValueFrom } from 'rxjs';
 import { UserService } from '../../data-access/user/user.service';
 import { RegComponent } from '../reg/reg.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { NgIf } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.less']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.less'],
+    standalone: true,
+    imports: [ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, NgIf, MatIconModule, MatButtonModule]
 })
 export class LoginComponent {
   constructor(public dialog: MatDialog, private authService : AuthService,private userService:UserService){ }

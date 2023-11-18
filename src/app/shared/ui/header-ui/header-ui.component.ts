@@ -1,4 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { UserCardUiComponent } from '../user-card-ui/user-card-ui.component';
+import { NgIf } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterLink } from '@angular/router';
 
 export interface TagsModel {
   primarytag?: string
@@ -6,9 +11,11 @@ export interface TagsModel {
 }
 
 @Component({
-  selector: 'app-header-ui',
-  templateUrl: './header-ui.component.html',
-  styleUrls: ['./header-ui.component.less']
+    selector: 'app-header-ui',
+    templateUrl: './header-ui.component.html',
+    styleUrls: ['./header-ui.component.less'],
+    standalone: true,
+    imports: [RouterLink, MatMenuModule, MatIconModule, NgIf, UserCardUiComponent]
 })
 export class HeaderUiComponent {
   constructor() { }

@@ -8,8 +8,8 @@ describe('CatalogUiComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CatalogUiComponent]
-    });
+    imports: [CatalogUiComponent]
+});
     fixture = TestBed.createComponent(CatalogUiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

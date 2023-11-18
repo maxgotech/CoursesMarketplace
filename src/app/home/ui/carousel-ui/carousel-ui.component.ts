@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-carousel-ui',
-  templateUrl: './carousel-ui.component.html',
-  styleUrls: ['./carousel-ui.component.less']
+    selector: 'app-carousel-ui',
+    templateUrl: './carousel-ui.component.html',
+    styleUrls: ['./carousel-ui.component.less'],
+    standalone: true
 })
 export class CarouselUiComponent implements OnInit, OnDestroy {
 
