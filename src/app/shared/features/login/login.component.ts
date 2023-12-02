@@ -58,7 +58,7 @@ export class LoginComponent {
       const user = this.userService.UserData(this.mail) // запрос на данные пользователя если прошел логин
       const userentity = await lastValueFrom(user)
       this.user = userentity
-      localStorage.setItem('pfpPath',this.user.pfp_path); // адрес картинки пользователя если прошел логин
+      //localStorage.setItem('pfpPath',this.user.pfp_path); // адрес картинки пользователя если прошел логин
       window.location.reload()
     } catch(err){
       this.error=true;

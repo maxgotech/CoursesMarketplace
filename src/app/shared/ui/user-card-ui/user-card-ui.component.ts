@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
@@ -11,10 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
     standalone: true,
     imports: [MatMenuModule, MatDividerModule, RouterLink, MatIconModule]
 })
-export class UserCardUiComponent {
-  constructor(){
-    this.pfp = "http://localhost:3000/user/images" + localStorage.getItem('pfpPath')!; //автарка
-  }
+export class UserCardUiComponent implements OnChanges {
 
   pfp:any
 
@@ -24,6 +21,16 @@ export class UserCardUiComponent {
 
   Logout(){
     this.LogOut.emit(true)
+  }
+
+  initpfp(){
+    this.pfp = "http://localhost:3000/user/images" + this.user?.pfp_path;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['user'].currentValue != undefined) { // данные получены
+      this.initpfp()
+    }
   }
 
 }
