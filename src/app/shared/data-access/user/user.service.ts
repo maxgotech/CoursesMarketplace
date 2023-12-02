@@ -12,13 +12,4 @@ export class UserService {
     queryParams = queryParams.append("mail",mail);
 		return this.http.get<any>('/api/user/data',{params:queryParams});
 	}
-
-  pfpLoad(pfp:FormData){
-    return this.http.post('/api/user/pfpload', pfp );
-  }
-
-  UserUpdate( id:number,name:string, secondname:string, about:string, pfp_path?:string){
-    return this.http.patch('/api/user/updateuser',{id, name, secondname, about, pfp_path})
-  }
-
 }
