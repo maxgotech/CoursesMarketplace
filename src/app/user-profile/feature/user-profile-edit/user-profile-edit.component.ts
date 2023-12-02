@@ -51,12 +51,11 @@ export class UserProfileEditComponent implements OnInit {
   user: User | undefined;
   currentUser = this.authService.currentUserValue;
   mail = this.currentUser.mail; // почта текущего пользователя
-  pfp: string | null | ArrayBuffer = '';
-  currentpfp: string | null | ArrayBuffer = '';
-  name: string | undefined;
-  secondname: string | undefined;
-  about: string | undefined;
-  pfp_path: string | undefined;
+
+  name: string | undefined;               //
+  secondname: string | undefined;         //// TODO Заменить на форму
+  about: string | undefined;              //// 
+  pfp_path: string | undefined;           //
 
 
   async onSaveButton(files: FileList) { // кнопка сохранения
@@ -72,7 +71,7 @@ export class UserProfileEditComponent implements OnInit {
     this.name = (<HTMLInputElement>document.getElementById("NameInput")).value;
     this.secondname = (<HTMLInputElement>document.getElementById("SecondNameInput")).value;
     this.about = (<HTMLInputElement>document.getElementById("AboutInput")).value;
-    this.userProfileService.UserUpdate(this.user!.id, this.name, this.secondname, this.about, this.pfp_path).subscribe((data) => console.log(data));
+    this.userProfileService.UserUpdate(this.user!.id, this.name, this.secondname, this.about, this.pfp_path).subscribe();
     if (this.pfp_path) {
       window.location.reload();
     }
