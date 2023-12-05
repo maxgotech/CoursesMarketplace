@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
 import { StudiesService } from 'src/app/content-creation/data-access/studies/studies.service';
 import { CoursesStudiesNavbarUiComponent } from 'src/app/content-creation/ui/shared/courses-studies-navbar-ui/courses-studies-navbar-ui.component';
 import { StudiesCreationUiComponent } from 'src/app/content-creation/ui/studies/studies-creation-ui/studies-creation-ui.component';
@@ -56,14 +55,10 @@ export class StudiesCreationComponent implements OnInit {
 
   createStudy(name:string) { //  создание занятия
     this.studiesService.NewStudy(name,this.user!.id).subscribe(data => this.getStudies(this.user!.id));
-    this.cdr.detectChanges()
   }
 
   async deleteStudy(id:number){
-    const data = this.studiesService.DeleteStudy(id)
-    const res = await lastValueFrom(data)
-    this.getStudies(this.user!.id);
-    this.cdr.detectChanges()
+    this.studiesService.DeleteStudy(id).subscribe(data => this.getStudies(this.user!.id));
   }
 
 }
