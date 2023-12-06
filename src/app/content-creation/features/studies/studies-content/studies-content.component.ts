@@ -28,17 +28,27 @@ export class StudiesContentComponent implements OnInit {
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
-      this.studiesService.ReturnStudy(this.id).subscribe((data) => {
-        this.study = data
-        this.cdr.detectChanges()
-      }
-      )
+      this.getStudy()
     });
   }
 
   id: number | undefined;
   private sub: any;
   study: any | undefined;
+
+  getStudy() {
+    this.studiesService.ReturnStudy(this.id!).subscribe((data) => {
+      this.study = data
+      this.cdr.detectChanges()
+    }
+    )
+  }
+
+  updateStudy(flag: boolean) {
+    if (flag == true) {
+      this.getStudy()
+    }
+  }
 
   chooseType(flag: boolean) {
     if (flag == true) {
