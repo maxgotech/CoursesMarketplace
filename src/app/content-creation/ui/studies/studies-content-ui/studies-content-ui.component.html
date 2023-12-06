@@ -8,7 +8,10 @@
         <ng-template #content>
             <div [ngSwitch]="study.type_content">
                 <!--  Выбран тип текст -->
-                <app-text-study-ui *ngSwitchCase="1"></app-text-study-ui>
+                <app-study-content-text *ngSwitchCase="1"
+                [study]="study" 
+                (updateStudy)="studyUpdate($event)"
+                ></app-study-content-text>
                 <!-- Выбран тип видео -->
                 <app-video-study-ui *ngSwitchCase="2"></app-video-study-ui>
             </div>
