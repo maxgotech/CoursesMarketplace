@@ -54,10 +54,4 @@ export class StudyContentTextComponent implements OnInit {
 
   contentFromDB:any
 
-  GetId() { // получение айди
-    this.sub = this.route.params.subscribe((params) => {
-      this.id = params['id']
-    });
-    return this.id
-  }
 }
