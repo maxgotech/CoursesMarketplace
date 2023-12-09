@@ -7,13 +7,19 @@
         </div>
         <ng-template #content>
             <div [ngSwitch]="study.type_content">
+
                 <!--  Выбран тип текст -->
                 <app-study-content-text *ngSwitchCase="1"
                 [study]="study" 
                 (updateStudy)="studyUpdate($event)"
                 ></app-study-content-text>
+
                 <!-- Выбран тип видео -->
-                <app-video-study-ui *ngSwitchCase="2"></app-video-study-ui>
+                <app-study-content-video *ngSwitchCase="2"
+                [study]="study"
+                (updateStudy)="studyUpdate($event)"
+                ></app-study-content-video>
+
             </div>
         </ng-template>
     </div>
