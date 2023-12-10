@@ -7,7 +7,7 @@
         <div id="StudyList">
             <div class="card" *ngFor="let study of studies">
                 <div class="container" [routerLink]="['/teaching/studies', study.id]">
-                    <h4><b>{{study.name}}</b></h4>
+                    <h4><b>{{study?.name}}</b></h4>
                 </div>
                 <div class="dot-menu">
                     <input id="dot-menu" type="checkbox" class="dot-menu__checkbox">

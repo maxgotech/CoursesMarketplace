@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class StudiesCreationUiComponent {
 
-  name:string = ''
+  name:string | undefined = ''
 
   @Input() studies:any
 
