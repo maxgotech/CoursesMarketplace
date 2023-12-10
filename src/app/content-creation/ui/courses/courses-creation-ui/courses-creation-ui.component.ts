@@ -35,6 +35,10 @@ export class CoursesCreationUiComponent {
     this.newCourse.emit(this.name)
   }
 
+  AddCourseNameToNav(name:string) { // название курса в локальную переменную (это делается для того, чтобы убрать микро-подгрузку названия курса в навбар)
+    localStorage.setItem('courseName',name); 
+  }
+
   removeCourse(id:number){
     this.deleteCourse.emit(id)
   }

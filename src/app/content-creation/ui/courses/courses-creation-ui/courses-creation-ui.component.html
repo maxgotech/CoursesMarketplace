@@ -6,7 +6,7 @@
         <button (click)="createCourse()" id="BCreate" class="green-button save">Создать</button>
         <div id="CoursesList">
             <div class="card" *ngFor="let course of courses">
-                <div class="container" [routerLink]="['/course', course.id, 'description']">
+                <div class="container" (click)="AddCourseNameToNav(course.name)" [routerLink]="['/teaching/courses', course.id, 'description']">
                     <h4><b>{{course?.name}}</b></h4>
                 </div>
                 <div class="dot-menu">
