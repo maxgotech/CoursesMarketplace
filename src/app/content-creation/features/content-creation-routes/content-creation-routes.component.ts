@@ -1,5 +1,6 @@
 import { CoursesService } from "../../data-access/courses/courses.service";
 import { StudiesService } from "../../data-access/studies/studies.service";
+import { CourseContentComponent } from "../courses/course-content/course-content.component";
 import { CoursesCreationComponent } from "../courses/courses-creation/courses-creation.component";
 import { CoursesDescComponent } from "../courses/courses-desc/courses-desc.component";
 import { StudiesContentComponent } from "../studies/studies-content/studies-content.component";
@@ -17,6 +18,10 @@ export default [
       {
         path: ':id/description',
         component: CoursesDescComponent
+      },
+      {
+        path:':id/content',
+        component:CourseContentComponent
       }
     ]
   },
