@@ -8,7 +8,7 @@
       <div cdkDropList (cdkDropListDropped)="drop($event)" *ngFor="let course of modules">
         <div cdkDrag class="card" *ngFor="let module of course.module">
           <div class="custom-placeholder" *cdkDragPlaceholder></div>
-          <div class="container" [routerLink]="['/module', module.id]">
+          <div class="container" [routerLink]="['/teaching/courses/module', module.id]">
             <h4><b>{{module?.name}}</b></h4>
           </div>
           <div class="dot-menu">
