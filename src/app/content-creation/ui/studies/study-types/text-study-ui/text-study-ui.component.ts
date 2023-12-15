@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import EditorJS from "@editorjs/editorjs";
 import { StudyTextEditorConfig } from 'src/app/utils/configs/editor-configs/study-text/study-text-config';
@@ -14,7 +14,7 @@ import { StudyTextEditorConfig } from 'src/app/utils/configs/editor-configs/stud
   styleUrl: './text-study-ui.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextStudyUiComponent implements OnChanges {
+export class TextStudyUiComponent implements OnChanges, OnInit {
   constructor(private route: ActivatedRoute) { }
 
   @Input() contentFromDB: any

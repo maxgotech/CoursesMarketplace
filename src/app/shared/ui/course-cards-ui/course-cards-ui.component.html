@@ -27,14 +27,14 @@
 				<div class="header">
 					<div>
 						<a class="title">
-							{{course.name}}
+							{{course?.name}}
 						</a>
-						<p class="name">Автор: {{course.user.name}} {{course.user.secondname}}</p>
+						<p class="name">Автор: {{course?.user?.name}} {{course?.user?.secondname}}</p>
 					</div>
 				</div>
 				<dl class="post-info">
 					<div class="price">
-						<dt *ngIf="course.price!=null; else free">{{course.price}} ₽</dt>
+						<dt *ngIf="course.price!=null; else free">{{course?.price}} ₽</dt>
 						<ng-template #free> Бесплатно </ng-template>
 					</div>
 				</dl>
