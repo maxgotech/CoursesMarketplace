@@ -46,12 +46,6 @@ export class CoursesService {
     return this.http.get<any>('/api/courses/findcoursebyid', { params: queryParams });
   }
 
-  FindCourseByTranslit(translit: string) {
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append("translit", translit);
-    return this.http.get<any>('/api/courses/findcoursebytranslit', { params: queryParams });
-  }
-
   FindModule(id: number) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("id", id);
