@@ -2,6 +2,10 @@ import { Routes } from "@angular/router";
 
 export const appRoutes: Routes = [
   {
+    path: 'course',
+    loadChildren: async () =>(await import('./course/features/course-routes/course-routes.component'))
+  },
+  {
     path: 'teaching',
     loadChildren: async () =>(await import('./content-creation/features/content-creation-routes/content-creation-routes.component'))
   },
