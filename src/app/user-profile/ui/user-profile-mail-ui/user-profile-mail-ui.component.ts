@@ -13,6 +13,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class UserProfileMailUiComponent {
   
-  @Input() mail:string = ''
+  @Input() mail?:string
 
 }
