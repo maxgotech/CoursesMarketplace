@@ -4,11 +4,11 @@
   </header>
   <nav class="sidebar-nav">
     <ul>
-      <li *ngFor="let module of plan[0].module">
+      <li *ngFor="let module of plan?.module">
         <a><span>{{module?.name}}</span></a>
         <ul class="nav-flyout">
-          <li *ngFor="let study of module.study">
-            <a [routerLink]="['/course',plan[0].id,'syllabus','study',study.id]">
+          <li *ngFor="let study of module?.study">
+            <a [routerLink]="['/course',plan.id,'syllabus','study',study.id]">
               <span routerLinkActive="" [routerLinkActiveOptions]="{ exact: true }">{{study?.name}}</span>
             </a>
           </li>
