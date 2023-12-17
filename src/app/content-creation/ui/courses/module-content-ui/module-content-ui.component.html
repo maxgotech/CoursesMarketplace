@@ -10,7 +10,7 @@
             required 
         />
         <div id="StudyList">
-            <div class="card" *ngFor="let study of studies" [routerLink]="['/studies', study.id]">
+            <div class="card" *ngFor="let study of studies" [routerLink]="['/teaching/studies', study.id]">
                 <div class="container">
                     <h4><b>{{study?.name}}</b></h4>
                 </div>
