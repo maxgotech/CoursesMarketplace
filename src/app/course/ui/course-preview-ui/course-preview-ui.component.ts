@@ -47,8 +47,9 @@ export class CoursePreviewUiComponent implements OnChanges, OnInit {
   }
 
   toCourse(){
-    const path = '/course/'+ this.plan.id + '/syllabus/study/' + this.plan.module.study.id
-    this.router.navigate([path])
+    const path = [];
+    path.push('/course',this.plan.id,'syllabus','study',this.plan.module[0].study[0].id);
+    this.router.navigate(path)
   }
 
 }
