@@ -17,7 +17,11 @@ import { TextStudyUiComponent } from 'src/app/content-creation/ui/studies/study-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StudyContentTextComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private studiesService: StudiesService, private cdr: ChangeDetectorRef) { }
+  constructor(private route: ActivatedRoute, private studiesService: StudiesService, private cdr: ChangeDetectorRef) {
+    this.sub = this.route.params.subscribe((params) => {
+      this.id = params['id']
+    });
+  }
 
   @Input() study: any
 
@@ -34,6 +38,7 @@ export class StudyContentTextComponent implements OnInit {
 
   async SaveContent(data:any){
     const content = JSON.stringify(data);
+    console.log(this.study.id_content)
       if (this.study.id_content!=null){
         const data = this.studiesService.UpdateTextContent(this.study.id_content,content) // обновления занятия
         const response = await lastValueFrom(data)
