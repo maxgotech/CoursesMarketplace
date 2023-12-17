@@ -12,15 +12,16 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrl: './study-video-type-ui.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StudyVideoTypeUiComponent { 
+export class StudyVideoTypeUiComponent implements OnChanges { 
   constructor(private sanitizer: DomSanitizer){}
 
   @Input() path:string | undefined
   
-  iframeSrc: SafeUrl | undefined
+  iframeSrc: SafeUrl = this.sanitizer.bypassSecurityTrustResourceUrl('')
 
-  videoURL(){
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.path!);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['path'].currentValue != undefined){
+      this.iframeSrc = this.sanitizer.bypassSecurityTrustResourceUrl(this.path!);
+    }
   }
-
 }
