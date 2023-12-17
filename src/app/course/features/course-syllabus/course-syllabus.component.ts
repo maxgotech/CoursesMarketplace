@@ -19,25 +19,25 @@ import { CourseSyllabusNavbarUiComponent } from '../../ui/course-syllabus-navbar
   styleUrl: './course-syllabus.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseSyllabusComponent implements OnInit, OnDestroy { 
-  constructor(private route: ActivatedRoute, private courseService:CourseService, private cdr:ChangeDetectorRef) {
+export class CourseSyllabusComponent implements OnInit, OnDestroy {
+  constructor(private route: ActivatedRoute, private courseService: CourseService, private cdr: ChangeDetectorRef) {
     this.sub = this.route.params.subscribe(params => {
       this.sid = +params['sid'];
       this.cid = +params['cid'];
       this.CurrentStudy(this.sid!)
-   });
+    });
   }
   ngOnInit(): void {
     this.CoursePlan(this.cid!)
   }
 
-  CoursePlan(id:number) { // получение информации о курсе и модулях
-    this.courseService.ModuleListByCourseID(id).subscribe(data => {this.plan = data[0];this.cdr.detectChanges()})
-   }
+  CoursePlan(id: number) { // получение информации о курсе и модулях
+    this.courseService.ModuleListByCourseID(id).subscribe(data => { this.plan = data[0]; this.cdr.detectChanges() })
+  }
 
-   CurrentStudy(id:number) {  //текущее выбранное занятие
-    this.courseService.ReturnStudy(id).subscribe(data => {this.study=data;this.cdr.detectChanges()})
-   }
+  CurrentStudy(id: number) {  //текущее выбранное занятие
+    this.courseService.ReturnStudy(id).subscribe(data => { this.study = data; this.cdr.detectChanges() })
+  }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
@@ -46,7 +46,7 @@ export class CourseSyllabusComponent implements OnInit, OnDestroy {
   cid: number | undefined;
   sid: number | undefined;
   private sub: any;
-  study:any | undefined;
-  plan:any;
+  study: any | undefined;
+  plan: any;
 
 }
