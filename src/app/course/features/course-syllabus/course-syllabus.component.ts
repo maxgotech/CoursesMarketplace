@@ -36,7 +36,7 @@ export class CourseSyllabusComponent implements OnInit, OnDestroy {
    }
 
    CurrentStudy(id:number) {  //текущее выбранное занятие
-    this.courseService.ReturnStudy(id).subscribe(data => {this.study=data;console.log(this.study);this.cdr.detectChanges()})
+    this.courseService.ReturnStudy(id).subscribe(data => {this.study=data;this.cdr.detectChanges()})
    }
 
   ngOnDestroy() {
