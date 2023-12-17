@@ -28,24 +28,11 @@ export interface User {
   styleUrl: './user-profile-mail.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserProfileMailComponent implements OnInit { 
+export class UserProfileMailComponent { 
   constructor(
-    private authService: AuthService,
-    private userService: UserService,
+    private authService: AuthService
   ) {}
 
-  async ngOnInit() {
-    await this.userData()
-  }
-
-  async userData() {
-    const mail = this.currentUser.mail;
-    const data = this.userService.UserData(mail)
-    const response = await lastValueFrom(data)
-    this.user = response
-  }
-
-  user: User | undefined;
   currentUser = this.authService.currentUserValue;
   mail = this.currentUser.mail; // почта текущего пользователя
 
