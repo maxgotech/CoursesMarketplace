@@ -14,7 +14,7 @@ import Underline from '@editorjs/underline';
 import ColorPlugin from 'editorjs-text-color-plugin';
 
 export var StudyTextReadOnlyEditorConfig = {
-    holderId: 'editor-js',
+    holder: 'editor-js',
     readOnly: true,
     tools: { 
       header: {
