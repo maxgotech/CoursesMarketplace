@@ -1,6 +1,6 @@
 import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from 'src/app/content-creation/data-access/courses/courses.service';
@@ -28,7 +28,7 @@ export interface User {
   styleUrl: './module-add-study-dialog.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModuleAddStudyDialogComponent { 
+export class ModuleAddStudyDialogComponent implements OnInit { 
   constructor(
     @Inject(DIALOG_DATA) data:{route:ActivatedRoute},
     private studyService:StudiesService,
@@ -41,6 +41,10 @@ export class ModuleAddStudyDialogComponent {
   {
     data.route.params.subscribe(params => {this.id = +params['id']});
     this.getAllUserStudies();
+  }
+
+  ngOnInit(): void {
+    this.dialogRef.updateSize('auto','45dvw')
   }
 
   studies:any=[]
