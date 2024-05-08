@@ -53,8 +53,8 @@ logout() {
   this.currentUser = this.currentUserSubject.asObservable();
 }
 
-register(name:string, secondname:string, mail: string, password: string) {
-	return this.http.post<any>('/api/auth/reg', { name , secondname , mail, password });
+register(name:string, secondname:string, mail: string, password: string, role: string) {
+	return this.http.post<any>('/api/auth/reg', { name , secondname , mail, password, role });
 }
 
 }

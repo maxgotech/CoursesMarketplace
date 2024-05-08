@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { AuthService } from '../../data-access/auth/auth.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,13 +8,22 @@ import { NgIf } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
     selector: 'app-reg',
     templateUrl: './reg.component.html',
     styleUrls: ['./reg.component.less'],
     standalone: true,
-    imports: [ReactiveFormsModule, MatDialogModule, MatFormFieldModule, MatInputModule, NgIf, MatIconModule, MatButtonModule]
+    imports: [
+      NgIf,
+      ReactiveFormsModule,
+      MatDialogModule,
+      MatFormFieldModule,
+      MatInputModule,
+      MatIconModule,
+      MatButtonModule,
+      MatSelectModule]
 })
 export class RegComponent {
   constructor(private authService: AuthService, private formBuilder: FormBuilder) { }
@@ -40,7 +49,8 @@ export class RegComponent {
     pass: new FormControl('', [Validators.required]),
     secondpass: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
-    secondname: new FormControl('', [Validators.required])
+    secondname: new FormControl('', [Validators.required]),
+    role: new FormControl('student')
   });
 
 
@@ -49,7 +59,8 @@ export class RegComponent {
       this.RegForm.value.name!,
       this.RegForm.value.secondname!,
       this.RegForm.value.mail!,
-      this.RegForm.value.pass!
+      this.RegForm.value.pass!,
+      this.RegForm.value.role!
     )
     const response = await lastValueFrom(data)
     this.done = true //добавить вывод об успешной регистрации
