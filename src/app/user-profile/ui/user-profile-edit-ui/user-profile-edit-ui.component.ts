@@ -1,14 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { User } from 'src/app/shared/interfaces/user.interfaces';
 
-export interface User {
-  id:number;
-	name: string;
-	secondname: string;
-	mail: string;
-  about: string;
-  pfp_path:string;
-}
 
 @Component({
   selector: 'app-user-profile-edit-ui',

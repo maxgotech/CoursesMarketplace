@@ -6,15 +6,8 @@ import { AuthService } from 'src/app/shared/data-access/auth/auth.service';
 import { UserProfileService } from '../../data-access/user-profile.service';
 import { lastValueFrom } from 'rxjs';
 import { UserProfileEditUiComponent } from '../../ui/user-profile-edit-ui/user-profile-edit-ui.component';
+import { User } from 'src/app/shared/interfaces/user.interfaces';
 
-export interface User {
-  id: number;
-  name: string;
-  secondname: string;
-  mail: string;
-  about: string;
-  pfp_path: string;
-}
 
 @Component({
   selector: 'app-user-profile-edit',
