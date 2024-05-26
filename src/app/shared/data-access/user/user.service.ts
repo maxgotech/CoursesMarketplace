@@ -12,4 +12,8 @@ export class UserService {
     queryParams = queryParams.append("mail",mail);
 		return this.http.get<any>('/api/user/data',{params:queryParams});
 	}
+
+  get currentUserMail(): string | null{
+    return localStorage.getItem('currentUser')
+  }
 }
