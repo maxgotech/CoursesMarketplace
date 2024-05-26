@@ -14,6 +14,6 @@ export class UserService {
 	}
 
   get currentUserMail(): string | null{
-    return localStorage.getItem('currentUser')
+    return JSON.parse(localStorage.getItem('currentUser')!).mail
   }
 }
