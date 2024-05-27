@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit {
       }
       else {
         this.authService.logout();
+        this.router.navigate(['/']).then(()=> window.location.reload())
       }
     }
   }
