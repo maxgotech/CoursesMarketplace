@@ -1,8 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import EditorJS from "@editorjs/editorjs";
+import { BehaviorSubject } from 'rxjs';
 import { AboutReadOnlyEditorConfig } from 'src/app/utils/configs/editor-configs/about/about-readonly-config';
+
+interface Signing{
+  courseid:number,
+  userid:number
+}
 
 @Component({
   selector: 'app-course-preview-ui',
@@ -19,6 +25,9 @@ export class CoursePreviewUiComponent implements OnChanges, OnInit {
   constructor( private router: Router ) {}
 
   @Input() plan: any
+  @Input() signed: BehaviorSubject<boolean> | undefined
+
+  @Output() sign = new EventEmitter<boolean>()
 
   learnlist? = []
   reqlist? = []
@@ -50,6 +59,10 @@ export class CoursePreviewUiComponent implements OnChanges, OnInit {
     const path = [];
     path.push('/course',this.plan.id,'syllabus','study',this.plan.module[0].study[0].id);
     this.router.navigate(path)
+  }
+
+  signUser(){
+    this.sign.emit(true)
   }
 
 }
