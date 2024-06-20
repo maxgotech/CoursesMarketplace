@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { lastValueFrom } from 'rxjs';
+import { iif, lastValueFrom, mergeMap } from 'rxjs';
 import { CoursesService } from 'src/app/content-creation/data-access/courses/courses.service';
 import { CoursesDescUiComponent } from 'src/app/content-creation/ui/courses/courses-desc-ui/courses-desc-ui.component';
 import { CoursesNavbarUiComponent } from 'src/app/content-creation/ui/courses/courses-navbar-ui/courses-navbar-ui.component';
@@ -75,6 +75,15 @@ export class CoursesDescComponent implements OnInit {
   async CourseInfo() {
     const CourseInfo_req = this.coursesService.FindCourse(this.id!)
     const CourseInfo = await lastValueFrom(CourseInfo_req)
+    if(!CourseInfo.coursedesc) CourseInfo.coursedesc = {
+      id: 0,
+      shortabout: '',
+      learn: '',
+      req: '',
+      audience: '',
+      about: ''
+    }
+    console.log(CourseInfo)
     this.data = CourseInfo
     this.cdr.detectChanges()
   }
@@ -90,7 +99,7 @@ export class CoursesDescComponent implements OnInit {
     }
     this.AddCourseNameToNav(desc.data.name)
     this.coursesService.CourseUpdate(desc.data.id, desc.data.name, this.image_path!).subscribe()
-    if (this.data.coursedesc != null) {
+    if (this.data.coursedesc.id != 0) {
       this.coursesService.UpdateCourseDesc(
         desc.data.coursedesc.id, this.id!,
         desc.data.coursedesc.shortabout,
