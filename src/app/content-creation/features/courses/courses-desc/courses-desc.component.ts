@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { iif, lastValueFrom, mergeMap } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { CoursesService } from 'src/app/content-creation/data-access/courses/courses.service';
 import { CoursesDescUiComponent } from 'src/app/content-creation/ui/courses/courses-desc-ui/courses-desc-ui.component';
 import { CoursesNavbarUiComponent } from 'src/app/content-creation/ui/courses/courses-navbar-ui/courses-navbar-ui.component';
