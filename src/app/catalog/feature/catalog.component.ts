@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CatalogService } from '../data-access/catalog.service';
-import { lastValueFrom } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { CatalogUiComponent } from '../ui/catalog-ui/catalog-ui.component';
+import { ICourse } from 'src/app/course/data-access/dto/course';
 
 @Component({
     selector: 'app-catalog',
@@ -12,9 +13,19 @@ import { CatalogUiComponent } from '../ui/catalog-ui/catalog-ui.component';
     imports: [CatalogUiComponent]
 })
 export class CatalogComponent implements OnInit {
-  constructor(private router: Router, private aroute: ActivatedRoute, private catalogService: CatalogService) {
-    this.route = this.router.url
-    if (this.route.indexOf('search') !== -1) {
+
+  router = inject(Router)
+  aroute = inject(ActivatedRoute)
+  catalogService = inject(CatalogService)
+
+  route_flag: boolean
+  showmessage:string = ''
+
+  course$: Observable<ICourse[]> | undefined // Observable with current courses
+
+  constructor() {
+    let route: string = this.router.url
+    if (route.indexOf('search') !== -1) {
       this.route_flag = true
     } else {
       this.route_flag = false
@@ -30,37 +41,31 @@ export class CatalogComponent implements OnInit {
       }
   }
 
-  async QuerySearch() {
+  QuerySearch(): void {
+    let search
     this.aroute.queryParamMap
       .subscribe((params) => {
-        this.search = { ...params };
+        search = { ...params };
       });
-    this.showmessage = 'Курсы по поиску '+ this.search.params.text
-    const request = this.catalogService.SearchCourse(this.search.params.text)
-    const response = await lastValueFrom(request)
-    this.courses = response.courses
+    this.showmessage = 'Курсы по поиску '+ search!.params.text
+    this.course$ = this.catalogService.SearchCourse(search!.params.text).pipe(map((data) => data.courses))
   }
 
-  async TagsSearch() {
-    this.sub = this.aroute.params.subscribe((params) => {
-      this.primary_tag = params['primary_tag'];
-      this.secondary_tag = params['secondary_tag']
+  TagsSearch(): void {
+    let primary_tag:string | undefined
+    let secondary_tag: string | undefined
+    this.aroute.params.subscribe((params) => {
+      primary_tag = params['primary_tag'];
+      secondary_tag = params['secondary_tag']
     })
-    const request = this.catalogService.TagFilter(this.primary_tag, this.secondary_tag)
-    const response = await lastValueFrom(request)
-    this.showmessage = 'Курсы по тэгам ' + response.primarytag[0].name
-    if(response.secondarytag!=null){
-      this.showmessage += ' < ' + response.secondarytag[0].name
-    }
-    this.courses = response.courses
-  }
 
-  search: any
-  route: string
-  route_flag: boolean
-  courses: any
-  private sub: any;
-  primary_tag: any
-  secondary_tag: any
-  showmessage:string = ''
+    this.catalogService.TagFilter(primary_tag!, secondary_tag).subscribe(data => {
+      this.showmessage = 'Курсы по тэгам ' + data.primarytag.name
+      if(data.secondarytag!=null){
+        this.showmessage += ' < ' + data.secondarytag.name
+      }
+    })
+
+    this.course$ = this.catalogService.TagFilter(primary_tag!, secondary_tag).pipe(map((data) => data.courses))
+  }
 }

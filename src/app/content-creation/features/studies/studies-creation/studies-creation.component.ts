@@ -4,9 +4,8 @@ import { StudiesService } from 'src/app/content-creation/data-access/studies/stu
 import { CoursesStudiesNavbarUiComponent } from 'src/app/content-creation/ui/shared/courses-studies-navbar-ui/courses-studies-navbar-ui.component';
 import { StudiesCreationUiComponent } from 'src/app/content-creation/ui/studies/studies-creation-ui/studies-creation-ui.component';
 import { AuthService } from 'src/app/shared/data-access/auth/auth.service';
+import { IUser } from 'src/app/shared/data-access/user/dto/IUser';
 import { UserService } from 'src/app/shared/data-access/user/user.service';
-import { User } from 'src/app/shared/interfaces/user.interfaces';
-
 
 @Component({
   selector: 'app-studies-creation',
@@ -29,13 +28,13 @@ export class StudiesCreationComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.userService.UserData(this.mail).subscribe((Response: User) => {
+    this.userService.UserData(this.mail).subscribe((Response: IUser) => {
       this.user = Response; // UserDto текущего пользователя
       this.getStudies(this.user.id);
     });
   }
 
-  user: User | undefined;
+  user: IUser | undefined;
   currentUser = this.authService.currentUserValue;
   mail = this.currentUser.mail; // почта текущего пользователя
   studies: any = [];

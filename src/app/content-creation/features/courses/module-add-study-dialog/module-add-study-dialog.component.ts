@@ -7,9 +7,8 @@ import { CoursesService } from 'src/app/content-creation/data-access/courses/cou
 import { StudiesService } from 'src/app/content-creation/data-access/studies/studies.service';
 import { ModuleAddStudyDialogUiComponent } from 'src/app/content-creation/ui/courses/module-add-study-dialog-ui/module-add-study-dialog-ui.component';
 import { AuthService } from 'src/app/shared/data-access/auth/auth.service';
+import { IUser } from 'src/app/shared/data-access/user/dto/IUser';
 import { UserService } from 'src/app/shared/data-access/user/user.service';
-import { User } from 'src/app/shared/interfaces/user.interfaces';
-
 
 @Component({
   selector: 'app-module-add-study-dialog',
@@ -43,12 +42,12 @@ export class ModuleAddStudyDialogComponent implements OnInit {
 
   studies:any=[]
   id:number | undefined;
-  user:User | undefined;
+  user:IUser | undefined;
   currentUser = this.authService.currentUserValue;
   mail = this.currentUser.mail; // почта текущего пользователя
 
   getAllUserStudies() { //получение всех занятий созданных пользователем
-    this.userService.UserData(this.mail).subscribe((Response:User)=> {
+    this.userService.UserData(this.mail).subscribe((Response:IUser)=> {
       this.user=Response; // UserDto текущего пользователя
       this.studyService.ReturnStudies(this.user.id).subscribe((data) => 
       {

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { User } from 'src/app/shared/interfaces/user.interfaces';
+import { IUser } from 'src/app/shared/data-access/user/dto/IUser';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class UserProfileEditUiComponent implements OnChanges {
 
   }
 
-  @Input() user:User | undefined
+  @Input() user:IUser | undefined
 
   @Output() onSave = new EventEmitter<FileList>()
 

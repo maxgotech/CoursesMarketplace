@@ -1,33 +1,35 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { ITagSearch } from './dto/ITagSearch';
+import { ISearch } from './dto/ISearch';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogService {
 
-  constructor(private readonly http: HttpClient) { }
+  http = inject(HttpClient)
 
-  TagFilter(primarytag?:string,secondarytag?:string) {
+  TagFilter(primarytag:string, secondarytag?:string): Observable<ITagSearch> {
+
     let queryParams = new HttpParams();
-    if(primarytag==null){
-      return this.http.get<any>('/api/courses/catalog/tags');
-    } else if(secondarytag==null){
-      queryParams = queryParams.append("primarytag",primarytag);
-      return this.http.get<any>('/api/courses/catalog/tags',{params:queryParams});
+
+    if(secondarytag==null){
+      queryParams = queryParams.append("primarytag", primarytag);
+      return this.http.get<ITagSearch>('/api/courses/catalog/tags', { params: queryParams});
     }
-    queryParams = queryParams.append("primarytag",primarytag);
-    queryParams = queryParams.append("secondarytag",secondarytag);
-    return this.http.get<any>('/api/courses/catalog/tags',{params:queryParams});
-    }
+
+    queryParams = queryParams.append("primarytag", primarytag);
+    queryParams = queryParams.append("secondarytag", secondarytag);
+
+    return this.http.get<ITagSearch>('/api/courses/catalog/tags', { params: queryParams});
+  }
   
-    SearchCourse(searchString?:string){
+  SearchCourse(searchString:string): Observable<ISearch> {
     let queryParams = new HttpParams();
-    if(searchString==null){
-      return this.http.get<any>('/api/courses/search')
-    }
     queryParams = queryParams.append("text",searchString);
-    return this.http.get<any>('/api/courses/search',{params:queryParams})
-    }
+    return this.http.get<ISearch>('/api/courses/search',{params:queryParams})
+  }
 
 }

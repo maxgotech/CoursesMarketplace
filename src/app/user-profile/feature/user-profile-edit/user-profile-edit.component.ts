@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/shared/data-access/auth/auth.service';
 import { UserProfileService } from '../../data-access/user-profile.service';
 import { lastValueFrom } from 'rxjs';
 import { UserProfileEditUiComponent } from '../../ui/user-profile-edit-ui/user-profile-edit-ui.component';
-import { User } from 'src/app/shared/interfaces/user.interfaces';
+import { IUser } from 'src/app/shared/data-access/user/dto/IUser';
 
 
 @Component({
@@ -41,7 +41,7 @@ export class UserProfileEditComponent implements OnInit {
     this.cdr.detectChanges()
   }
 
-  user: User | undefined;
+  user: IUser | undefined;
   currentUser = this.authService.currentUserValue;
   mail = this.currentUser.mail; // почта текущего пользователя
 

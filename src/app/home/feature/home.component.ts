@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { HomeService } from '../data-access/home.service';
-import { lastValueFrom } from 'rxjs';
+import { Observable, lastValueFrom, map } from 'rxjs';
 import { CourseCardsUiComponent } from '../../shared/ui/course-cards-ui/course-cards-ui.component';
 import { CarouselUiComponent } from '../ui/carousel-ui/carousel-ui.component';
+import { ICourse } from 'src/app/course/data-access/dto/course';
 
 @Component({
     selector: 'app-home',
@@ -11,15 +12,7 @@ import { CarouselUiComponent } from '../ui/carousel-ui/carousel-ui.component';
     standalone: true,
     imports: [CarouselUiComponent, CourseCardsUiComponent]
 })
-export class HomeComponent implements OnInit {
-  constructor(private homeService:HomeService){}
-
-  async ngOnInit() {
-    const request = this.homeService.Allcourses()
-    const response = await lastValueFrom(request)
-    this.coursesData=response
-  }
-  
-  coursesData:any
-
+export class HomeComponent {
+  homeService = inject(HomeService)
+  course$ = this.homeService.Allcourses()
 }
