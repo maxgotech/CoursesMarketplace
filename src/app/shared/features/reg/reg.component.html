@@ -57,6 +57,14 @@
             </mat-icon>
             <mat-error>Это обязательное поле</mat-error>
         </mat-form-field>
+
+        <mat-form-field appearence = "outline">
+          <mat-label>Выберите роль</mat-label>
+          <mat-select formControlName = 'role' id = 'Role'>
+            <mat-option value="student">Ученик</mat-option>
+            <mat-option value="teacher">Преподаватель</mat-option>
+          </mat-select>
+        </mat-form-field>
     
         <button id="Reg" mat-raised-button color="primary"
         [disabled]="RegForm.invalid || !!formError">Зарегистрироваться</button>

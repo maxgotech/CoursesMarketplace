@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { UserCardUiComponent } from '../user-card-ui/user-card-ui.component';
 import { NgIf } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,7 +17,7 @@ export interface TagsModel {
     standalone: true,
     imports: [RouterLink, MatMenuModule, MatIconModule, NgIf, UserCardUiComponent]
 })
-export class HeaderUiComponent {
+export class HeaderUiComponent implements OnChanges {
   constructor() { }
 
   @Input() loggedIn: boolean = false;
@@ -31,6 +31,14 @@ export class HeaderUiComponent {
   @Output() QuerySearch = new EventEmitter<string>();
 
   @Output() Logout = new EventEmitter<boolean>();
+
+  role:boolean = false
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['User'].currentValue != undefined) { // данные получены
+      this.User.role == 'teacher' ? this.role = true : this.role = false
+    }
+  }
 
   LoggingOut(flag:boolean){
     if(flag==true){

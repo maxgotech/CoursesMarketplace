@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { CoursesService } from 'src/app/content-creation/data-access/courses/courses.service';
 
 @Component({
   selector: 'app-courses-navbar-ui',
@@ -16,7 +17,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesNavbarUiComponent {
-  constructor( private route: ActivatedRoute)
+  constructor( private route: ActivatedRoute, private coursesService:CoursesService)
   {
     this.sub = this.route.params.subscribe((params) => {
     this.id = +params['id'];
@@ -32,7 +33,7 @@ export class CoursesNavbarUiComponent {
   name:string
 
   publishCourse(){
-    this.publish.emit(this.id)
+    this.coursesService.publishCourse(this.id!).subscribe()
   }
 
 }

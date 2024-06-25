@@ -78,8 +78,12 @@
                         <ng-template #free> Бесплатно </ng-template>
                     </div>
                     <div class="buttonContainer">
-                        <button (click)="toCourse()" type="button"
-                            class="action">Купить</button>
+                        <button *ngIf="signed | async; else unset" (click)="toCourse()" type="button"
+                            class="action">Перейти в курс</button>
+                        <ng-template #unset>
+                            <button (click)="signUser()" type="button"
+                            class="action">Записаться</button>
+                        </ng-template>
                     </div>
 
                     <p class="desc">Данный курс включает:</p>
