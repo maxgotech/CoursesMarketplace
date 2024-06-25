@@ -14,6 +14,10 @@ export const appRoutes: Routes = [
     loadChildren: async () =>(await import('./user-profile/feature/user-profile-routes/user-profile-routes.component'))
   },
   {
+    path: 'user-courses',
+    loadChildren: async () =>(await import('./user-courses/feature//user-courses/user-courses-routes.component'))
+  },
+  {
     path: 'catalog',
     loadChildren: async () =>(await import('./catalog/feature/catalog-routes.component'))
   },

@@ -5,14 +5,7 @@ import { CoursesCreationUiComponent } from 'src/app/content-creation/ui/courses/
 import { CoursesStudiesNavbarUiComponent } from 'src/app/content-creation/ui/shared/courses-studies-navbar-ui/courses-studies-navbar-ui.component';
 import { AuthService } from 'src/app/shared/data-access/auth/auth.service';
 import { UserService } from 'src/app/shared/data-access/user/user.service';
-
-export interface User {
-  id: number;
-  name: string;
-  secondname: string;
-  mail: string;
-  about: string;
-}
+import { User } from 'src/app/shared/interfaces/user.interfaces';
 
 @Component({
   selector: 'app-courses-creation',

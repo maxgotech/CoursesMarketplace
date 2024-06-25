@@ -75,6 +75,15 @@ export class CoursesDescComponent implements OnInit {
   async CourseInfo() {
     const CourseInfo_req = this.coursesService.FindCourse(this.id!)
     const CourseInfo = await lastValueFrom(CourseInfo_req)
+    if(!CourseInfo.coursedesc) CourseInfo.coursedesc = {
+      id: 0,
+      shortabout: '',
+      learn: '',
+      req: '',
+      audience: '',
+      about: ''
+    }
+    console.log(CourseInfo)
     this.data = CourseInfo
     this.cdr.detectChanges()
   }
@@ -90,7 +99,7 @@ export class CoursesDescComponent implements OnInit {
     }
     this.AddCourseNameToNav(desc.data.name)
     this.coursesService.CourseUpdate(desc.data.id, desc.data.name, this.image_path!).subscribe()
-    if (this.data.coursedesc != null) {
+    if (this.data.coursedesc.id != 0) {
       this.coursesService.UpdateCourseDesc(
         desc.data.coursedesc.id, this.id!,
         desc.data.coursedesc.shortabout,

@@ -8,14 +8,8 @@ import { StudiesService } from 'src/app/content-creation/data-access/studies/stu
 import { ModuleAddStudyDialogUiComponent } from 'src/app/content-creation/ui/courses/module-add-study-dialog-ui/module-add-study-dialog-ui.component';
 import { AuthService } from 'src/app/shared/data-access/auth/auth.service';
 import { UserService } from 'src/app/shared/data-access/user/user.service';
+import { User } from 'src/app/shared/interfaces/user.interfaces';
 
-export interface User {
-  id:number;
-	name: string;
-	secondname: string;
-	mail: string;
-  about: string;
-}
 
 @Component({
   selector: 'app-module-add-study-dialog',

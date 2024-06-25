@@ -1,5 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+interface Signing{
+  courseid:number,
+  userid:number
+}
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +37,10 @@ export class CourseService {
     queryParams = queryParams.append("id", id);
     queryParams = queryParams.append("type_content", type_content);
     return this.http.get<any>('/api/studies/studybytype', { params: queryParams });
+  }
+
+  SignUserToCourse(sign: Signing): Observable<any> {
+    return this.http.post('/api/user/coursesign',sign)
   }
 
 }
